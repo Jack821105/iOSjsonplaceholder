@@ -117,7 +117,6 @@
 		FA9AAD24251B85B4003DF9AE /* iOSjsonplaceholder */ = {
 			isa = PBXGroup;
 			children = (
-				FA9AAD60251C543B003DF9AE /* Network */,
 				FA9AAD57251C4F0C003DF9AE /* Model */,
 				FA9AAD25251B85B4003DF9AE /* AppDelegate.swift */,
 				FA9AAD27251B85B4003DF9AE /* SceneDelegate.swift */,
@@ -169,7 +168,8 @@
 		FA9AAD57251C4F0C003DF9AE /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				FA9AAD59251C5001003DF9AE /* JSONPlaceholder.swift */,
+				FA9AAD60251C543B003DF9AE /* Network */,
+				FAA449132530B7CC002798F1 /* Bean */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -197,6 +197,14 @@
 				FA9AAD61251C5455003DF9AE /* Network.swift */,
 			);
 			name = Network;
+			sourceTree = "<group>";
+		};
+		FAA449132530B7CC002798F1 /* Bean */ = {
+			isa = PBXGroup;
+			children = (
+				FA9AAD59251C5001003DF9AE /* JSONPlaceholder.swift */,
+			);
+			name = Bean;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,7 +520,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N8KSD66U34;
 				INFOPLIST_FILE = iOSjsonplaceholder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -521,6 +530,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = class.ep101.iOSjsonplaceholder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = EP101;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -531,7 +541,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = N8KSD66U34;
 				INFOPLIST_FILE = iOSjsonplaceholder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -540,6 +551,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = class.ep101.iOSjsonplaceholder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = EP101;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
