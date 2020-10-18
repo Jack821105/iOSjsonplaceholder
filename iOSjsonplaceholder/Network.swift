@@ -11,6 +11,8 @@ import UIKit
 class NetworkController{
     
     static let shared = NetworkController()
+
+    
     
     let urlBase = URL(string: "https://jsonplaceholder.typicode.com/photos")!
     

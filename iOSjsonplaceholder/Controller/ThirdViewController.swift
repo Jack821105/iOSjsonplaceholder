@@ -11,7 +11,7 @@ class ThirdViewController: UIViewController {
     
     var jsonplaceholder:JSONPlaceholder?
     
-    
+    let imageCache = NSCache<NSURL, UIImage>()
     
     @IBOutlet weak var lbTitle: UILabel!
     @IBOutlet weak var lbID: UILabel!
@@ -26,6 +26,7 @@ class ThirdViewController: UIViewController {
         
         lbID.text = "id:\(jsonplaceholder?.id ?? 0)"
         lbTitle.text = "title:"+jsonplaceholder!.title
+        
         
         if let url = URL(string: jsonplaceholder!.url){
             URLSession.shared.dataTask(with: url) { (data, response, error) in

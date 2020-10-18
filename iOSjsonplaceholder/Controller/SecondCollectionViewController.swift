@@ -14,8 +14,7 @@ class SecondCollectionViewController: UICollectionViewController {
     
     var jsonPlaceholderlist = [JSONPlaceholder]()
     
-    
-    
+    var photo: JSONPlaceholder!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,32 +32,24 @@ class SecondCollectionViewController: UICollectionViewController {
         flowLayout?.estimatedItemSize = .zero
         flowLayout?.minimumInteritemSpacing = itemSpace
         flowLayout?.minimumLineSpacing = itemSpace
-        
-        
         flowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         
-        
+        NetworkController.shared.getAllProduct { (i :[JSONPlaceholder]) in
+            if i != nil{
+                self.jsonPlaceholderlist = i
+            }
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         
         // Register cell classes
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-        
-        
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        NetworkController.shared.getAllProduct { (i :[JSONPlaceholder]) in
-            if i != nil{
-                self.jsonPlaceholderlist = i
-                
-            }
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-            
-        }
         
     }
     
@@ -78,31 +69,10 @@ class SecondCollectionViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(SecondCollectionViewCell.self)", for: indexPath) as? SecondCollectionViewCell
-        
-        let jsonPlaceholder = jsonPlaceholderlist[indexPath.item]
-        
-        
-        
-        if let url = URL(string: jsonPlaceholder.thumbnailUrl){
-            URLSession.shared.dataTask(with: url) { (data, response, error) in
-                if let error = error{
-                    print("Error: \(error.localizedDescription)")
-                }else if let response = response,let data = data{
-                    print("狀態\(response)")
-                    let image = UIImage(data: data)
-                    DispatchQueue.main.async {
-                        cell?.ivThumbnailUrl.image=image
-                    }
-                }
-            }.resume()
-            
-            
-        }
-        
-        
-        cell?.lbID.text = String(jsonPlaceholder.id)
-        cell?.lbTitle.text = jsonPlaceholder.title
-        
+       
+        cell?.jsonP = jsonPlaceholderlist[indexPath.item]
+       /*畫面呈現*/
+        cell?.update()
         
         if let cell = cell {
             return cell
@@ -112,7 +82,7 @@ class SecondCollectionViewController: UICollectionViewController {
         
     }
     
-    
+    /*跳第三頁*/
     @IBSegueAction func actionToThird(_ coder: NSCoder) -> ThirdViewController? {
         
         let controller = ThirdViewController(coder: coder)
